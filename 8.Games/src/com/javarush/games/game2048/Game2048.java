@@ -9,10 +9,48 @@ public class Game2048 extends Game {
 
     private int[][] gameField = new int[SIDE][SIDE];
 
+    private Color getColorByValue(int value) {
+        if (value == 0) {
+            return Color.WHITE;
+        } else if (value == 2) {
+            return Color.BLUE;
+        } else if (value == 4) {
+            return Color.RED;
+        } else if (value == 8) {
+            return Color.ORANGE;
+        } else if (value == 16) {
+            return Color.AQUA;
+        } else if (value == 32) {
+            return Color.CRIMSON;
+        } else if (value == 64) {
+            return Color.ANTIQUEWHITE;
+        } else if (value == 128) {
+            return Color.WHEAT;
+        } else if (value == 256) {
+            return Color.DARKGREEN;
+        } else if (value == 512) {
+            return Color.GREEN;
+        } else if (value == 1024) {
+            return Color.LAWNGREEN;
+        } else if (value == 2048) {
+            return Color.THISTLE;
+        } else {
+            return Color.NONE;
+        }
+    }
+
+     private void setCellColoredNumber(int x, int y, int value) {
+         Color color = getColorByValue(value);
+         String string = value <= 0 ? "":String.valueOf(value);
+
+         setCellValueEx(x, y, color, string);
+     }
+
     private void drawScene() {
         for (int y = 0; y < 4; y++) {
-            for (int x = 0; x < 4; x++) {;
-                setCellColor(x, y, Color.RED);
+            for (int x = 0; x < 4; x++) {
+
+                setCellColoredNumber(x, y, gameField[y][x]);
             }
         }
     }
@@ -23,7 +61,7 @@ public class Game2048 extends Game {
         int number = getRandomNumber(10);
 
         if (gameField[y][x] == 0) {
-            gameField[y][x] = number == 9 ? 4:2;
+            gameField[y][x] = number == 9 ? 4 : 2;
         } else {
             createNewNumber();
         }
@@ -70,7 +108,7 @@ public class Game2048 extends Game {
             }
 
             for (int x = 0; x < 3; x++) {
-                if (gameField[y][x] == gameField[y][x+1] & gameField[y][x] != 0) {
+                if (gameField[y][x] == gameField[y][x + 1] & gameField[y][x] != 0) {
                     gameField[y][x + 1] *= 2;
                     gameField[y][x] = 0;
                 }
@@ -86,14 +124,14 @@ public class Game2048 extends Game {
             moveDown();
         } else if (key == Key.UP) {
             moveUp();
-        }else if (key == Key.RIGHT) {
+        } else if (key == Key.RIGHT) {
             moveRight();
-        }else if (key == Key.LEFT) {
+        } else if (key == Key.LEFT) {
             moveLeft();
         }
     }
 
-    private void createGame(){
+    private void createGame() {
         createNewNumber();
         createNewNumber();
     }

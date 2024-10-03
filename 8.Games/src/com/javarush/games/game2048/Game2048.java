@@ -10,10 +10,10 @@ public class Game2048 extends Game {
     Random random = new Random();
     private int[][] gameField = new int[SIDE][SIDE];
 
-    public void update() {
+    private void drawScene() {
         for (int y = 0; y < 4; y++) {
             for (int x = 0; x < 4; x++) {;
-                setCellNumber(x, y, gameField[y][x]);
+                setCellColor(x, y, Color.RED);
             }
         }
     }
@@ -33,7 +33,7 @@ public class Game2048 extends Game {
             }
         }
 
-        update();
+        drawScene();
     }
 
     public void moveLeft() {
@@ -66,7 +66,7 @@ public class Game2048 extends Game {
             }
         }
 
-        update();
+        drawScene();
     }
 
     @Override
@@ -83,15 +83,15 @@ public class Game2048 extends Game {
     }
 
     private void createGame(){
-
+        
     }
 
     @Override
     public void initialize() {
         setScreenSize(SIDE, SIDE);
 
-        update();
-
         createGame();
+
+        drawScene();
     }
 }

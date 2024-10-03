@@ -7,7 +7,6 @@ import java.util.Random;
 public class Game2048 extends Game {
     private static final int SIDE = 4;
 
-    Random random = new Random();
     private int[][] gameField = new int[SIDE][SIDE];
 
     private void drawScene() {
@@ -15,6 +14,18 @@ public class Game2048 extends Game {
             for (int x = 0; x < 4; x++) {;
                 setCellColor(x, y, Color.RED);
             }
+        }
+    }
+
+    private void createNewNumber() {
+        int x = getRandomNumber(SIDE);
+        int y = getRandomNumber(SIDE);
+        int number = getRandomNumber(10);
+
+        if (gameField[y][x] == 0) {
+            gameField[y][x] = number == 9 ? 4:2;
+        } else {
+            createNewNumber();
         }
     }
 
@@ -83,7 +94,8 @@ public class Game2048 extends Game {
     }
 
     private void createGame(){
-        
+        createNewNumber();
+        createNewNumber();
     }
 
     @Override

@@ -5,6 +5,8 @@ import com.javarush.engine.cell.*;
 import java.util.Random;
 
 public class Game2048 extends Game {
+    private static final int SIDE = 4;
+
     Random random = new Random();
     int[][] cells = new int[4][4];
 
@@ -82,7 +84,7 @@ public class Game2048 extends Game {
 
     @Override
     public void initialize() {
-        setScreenSize(4, 4);
+        setScreenSize(SIDE, SIDE);
 
         update();
     }

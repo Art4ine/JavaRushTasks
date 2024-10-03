@@ -8,12 +8,12 @@ public class Game2048 extends Game {
     private static final int SIDE = 4;
 
     Random random = new Random();
-    int[][] cells = new int[4][4];
+    private int[][] gameField = new int[SIDE][SIDE];
 
     public void update() {
         for (int y = 0; y < 4; y++) {
             for (int x = 0; x < 4; x++) {;
-                setCellNumber(x, y, cells[y][x]);
+                setCellNumber(x, y, gameField[y][x]);
             }
         }
     }
@@ -22,12 +22,12 @@ public class Game2048 extends Game {
         for (int y = 1; y < 4; y++) {
             for (int x = 0; x < 4; x++) {
                 for (int yx = 0; yx <= y; yx++) {
-                    if (cells[yx][x] == 0 & cells[y][x] != 0) {
-                        cells[yx][x] = cells[y][x];
-                        cells[y][x] = 0;
-                    } else if (cells[yx][x] == cells[y][x] & cells[y][x] != 0) {
-                        cells[yx][x] *= 2;
-                        cells[y][x] = 0;
+                    if (gameField[yx][x] == 0 & gameField[y][x] != 0) {
+                        gameField[yx][x] = gameField[y][x];
+                        gameField[y][x] = 0;
+                    } else if (gameField[yx][x] == gameField[y][x] & gameField[y][x] != 0) {
+                        gameField[yx][x] *= 2;
+                        gameField[y][x] = 0;
                     }
                 }
             }
@@ -48,20 +48,20 @@ public class Game2048 extends Game {
         for (int y = 2; y >= 0; y--) {
             for (int x = 0; x < 4; x++) {
                 for (int yx = 3; yx >= y; yx--) {
-                    if (cells[yx][x] == 0 & cells[y][x] != 0) {
-                        cells[yx][x] = cells[y][x];
-                        cells[y][x] = 0;
-                    } else if (cells[yx][x] == cells[y][x] & cells[y][x] != 0) {
-                        cells[yx][x] *= 2;
-                        cells[y][x] = 0;
+                    if (gameField[yx][x] == 0 & gameField[y][x] != 0) {
+                        gameField[yx][x] = gameField[y][x];
+                        gameField[y][x] = 0;
+                    } else if (gameField[yx][x] == gameField[y][x] & gameField[y][x] != 0) {
+                        gameField[yx][x] *= 2;
+                        gameField[y][x] = 0;
                     }
                 }
             }
 
             for (int x = 0; x < 3; x++) {
-                if (cells[y][x] == cells[y][x+1] & cells[y][x] != 0) {
-                    cells[y][x + 1] *= 2;
-                    cells[y][x] = 0;
+                if (gameField[y][x] == gameField[y][x+1] & gameField[y][x] != 0) {
+                    gameField[y][x + 1] *= 2;
+                    gameField[y][x] = 0;
                 }
             }
         }
@@ -82,10 +82,16 @@ public class Game2048 extends Game {
         }
     }
 
+    private void createGame(){
+
+    }
+
     @Override
     public void initialize() {
         setScreenSize(SIDE, SIDE);
 
         update();
+
+        createGame();
     }
 }

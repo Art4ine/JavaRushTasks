@@ -2,12 +2,11 @@ package com.javarush.games.game2048;
 
 import com.javarush.engine.cell.*;
 
-import java.util.Random;
-
 public class Game2048 extends Game {
     private static final int SIDE = 4;
 
     private int[][] gameField = new int[SIDE][SIDE];
+    private boolean isGameStopped = false;
 
     private Color getColorByValue(int value) {
         if (value == 0) {
@@ -39,6 +38,11 @@ public class Game2048 extends Game {
         }
     }
 
+    private void win() {
+        isGameStopped = true;
+        showMessageDialog(Color.YELLOW, "You win!", Color.YELLOW, 40);
+    }
+
      private void setCellColoredNumber(int x, int y, int value) {
          Color color = getColorByValue(value);
          String string = value <= 0 ? "":String.valueOf(value);
@@ -56,6 +60,10 @@ public class Game2048 extends Game {
     }
 
     private void createNewNumber() {
+        if (getMaxTileValue() >= 2048) {
+            win();
+        }
+
         int x = getRandomNumber(SIDE);
         int y = getRandomNumber(SIDE);
         int number = getRandomNumber(10);
@@ -99,6 +107,20 @@ public class Game2048 extends Game {
         }
 
         return cellMoved;
+    }
+
+    private int getMaxTileValue() {
+        int MaxTitle = 0;
+
+        for (int y = 0; y < SIDE; y++) {
+            for (int x = 0; x < SIDE; x++) {
+                if (MaxTitle <= gameField[y][x]) {
+                    MaxTitle = gameField[y][x];
+                }
+            }
+        }
+
+        return MaxTitle;
     }
 
     private void moveLeft() {

@@ -43,6 +43,40 @@ public class Game2048 extends Game {
         showMessageDialog(Color.YELLOW, "You win!", Color.YELLOW, 40);
     }
 
+    private boolean canUserMove() {
+        boolean canMove = false;
+
+        for (int y = 0; y < SIDE; y++) {
+            for (int x = 0; x < SIDE; x++) {
+                if (gameField[y][x] == 0) {
+                    return true;
+                }
+            }
+        }
+
+        for (int y = 0; y < SIDE; y++) {
+            for (int x = 1; x < SIDE; x++) {
+                if (gameField[y][x] == gameField[y][x-1]) {
+                    return true;
+                }
+            }
+        }
+
+        rotateClockwise();
+        for (int y = 0; y < SIDE; y++) {
+            for (int x = 1; x < SIDE; x++) {
+                if (gameField[y][x] == gameField[y][x-1]) {
+                    return true;
+                }
+            }
+        }
+        rotateClockwise();
+        rotateClockwise();
+        rotateClockwise();
+
+        return canMove;
+    }
+
      private void setCellColoredNumber(int x, int y, int value) {
          Color color = getColorByValue(value);
          String string = value <= 0 ? "":String.valueOf(value);

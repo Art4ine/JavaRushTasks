@@ -101,9 +101,38 @@ public class Game2048 extends Game {
         return cellMoved;
     }
 
+    private void moveLeft() {
+
+    }
+
+    private void moveRight() {
+
+    }
+
+    private void moveUp() {
+
+    }
+
+    private void moveDown() {
+
+    }
+
     private void createGame() {
         createNewNumber();
         createNewNumber();
+    }
+
+    @Override
+    public void onKeyPress(Key key) {
+        if (key == Key.UP) {
+            moveUp();
+        } else  if (key == Key.DOWN) {
+            moveDown();
+        } else  if (key == Key.LEFT) {
+            moveLeft();
+        } else  if (key == Key.RIGHT) {
+            moveRight();
+        }
     }
 
     @Override

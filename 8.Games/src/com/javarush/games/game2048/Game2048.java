@@ -7,6 +7,7 @@ public class Game2048 extends Game {
 
     private int[][] gameField = new int[SIDE][SIDE];
     private boolean isGameStopped = false;
+    private int score = 0;
 
     private Color getColorByValue(int value) {
         if (value == 0) {
@@ -114,6 +115,8 @@ public class Game2048 extends Game {
         }
     }
 
+
+
     private boolean mergeRow(int[] row) {
         boolean canMerge = false;
 
@@ -122,6 +125,9 @@ public class Game2048 extends Game {
                 row[i-1] *= 2;
                 row[i] = 0;
                 canMerge = true;
+
+                score += row[i-1];
+                setScore(score);
             }
         }
 
@@ -207,9 +213,12 @@ public class Game2048 extends Game {
 
     private void createGame() {
         gameField = new int[SIDE][SIDE];
+        
+        createNewNumber();
+        createNewNumber();
 
-        createNewNumber();
-        createNewNumber();
+        score = 0;
+        setScore(score);
     }
     private void rotateClockwise() {
         int[][] newGameField = new int[SIDE][SIDE];

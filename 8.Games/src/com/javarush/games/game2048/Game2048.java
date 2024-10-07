@@ -118,20 +118,30 @@ public class Game2048 extends Game {
         if (moved) {
             createNewNumber();
         }
-
-        drawScene();
     }
 
     private void moveRight() {
-        drawScene();
+        rotateClockwise();
+        rotateClockwise();
+        moveLeft();
+        rotateClockwise();
+        rotateClockwise();
     }
 
     private void moveUp() {
-        drawScene();
+        rotateClockwise();
+        rotateClockwise();
+        rotateClockwise();
+        moveLeft();
+        rotateClockwise();
     }
 
     private void moveDown() {
-        drawScene();
+        rotateClockwise();
+        moveLeft();
+        rotateClockwise();
+        rotateClockwise();
+        rotateClockwise();
     }
 
     private void createGame() {
@@ -154,12 +164,16 @@ public class Game2048 extends Game {
     public void onKeyPress(Key key) {
         if (key == Key.UP) {
             moveUp();
+            drawScene();
         } else  if (key == Key.DOWN) {
             moveDown();
+            drawScene();
         } else  if (key == Key.LEFT) {
             moveLeft();
+            drawScene();
         } else  if (key == Key.RIGHT) {
             moveRight();
+            drawScene();
         }
     }
 

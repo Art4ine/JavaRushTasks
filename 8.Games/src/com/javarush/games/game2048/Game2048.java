@@ -206,6 +206,8 @@ public class Game2048 extends Game {
     }
 
     private void createGame() {
+        gameField = new int[SIDE][SIDE];
+
         createNewNumber();
         createNewNumber();
     }
@@ -228,6 +230,10 @@ public class Game2048 extends Game {
             return;
         }
 
+        if (canUserMove() & key != Key.SPACE) {
+            return;
+        }
+
         if (key == Key.UP) {
             moveUp();
             drawScene();
@@ -239,6 +245,10 @@ public class Game2048 extends Game {
             drawScene();
         } else  if (key == Key.RIGHT) {
             moveRight();
+            drawScene();
+        } else if (key == Key.SPACE) {
+            isGameStopped = false;
+            createGame();
             drawScene();
         }
     }

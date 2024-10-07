@@ -102,19 +102,36 @@ public class Game2048 extends Game {
     }
 
     private void moveLeft() {
+        boolean moved = false;
+        for (int i = 0; i < SIDE; i++) {
+            if (compressRow(gameField[i])) {
+                moved = true;
+            }
 
+            if (mergeRow(gameField[i])) {
+                moved = true;
+            }
+
+            compressRow(gameField[i]);
+        }
+
+        if (moved) {
+            createNewNumber();
+        }
+
+        drawScene();
     }
 
     private void moveRight() {
-
+        drawScene();
     }
 
     private void moveUp() {
-
+        drawScene();
     }
 
     private void moveDown() {
-
+        drawScene();
     }
 
     private void createGame() {

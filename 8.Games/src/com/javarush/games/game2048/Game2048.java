@@ -138,6 +138,17 @@ public class Game2048 extends Game {
         createNewNumber();
         createNewNumber();
     }
+    private void rotateClockwise() {
+        int[][] newGameField = new int[SIDE][SIDE];
+
+        for (int y = 0; y < SIDE; y++) {
+            for (int x = 0; x < SIDE; x++) {
+                newGameField[x][3-y] = gameField[y][x];
+            }
+        }
+
+        gameField = newGameField;
+    }
 
     @Override
     public void onKeyPress(Key key) {

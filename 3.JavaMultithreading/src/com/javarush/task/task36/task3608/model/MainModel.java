@@ -23,7 +23,7 @@ public class MainModel implements Model {
     }
 
     @Override
-    public void loadDeleatedUsers() {
+    public void loadDeletedUsers() {
         List<User> users = userService.getAllDeletedUsers();
 
         modelData.setUsers(users);

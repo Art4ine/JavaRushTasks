@@ -22,7 +22,7 @@ public class FakeModel implements Model {
     }
 
     @Override
-    public void loadDeleatedUsers() {
+    public void loadDeletedUsers() {
         throw new UnsupportedOperationException();
     }
 }

@@ -5,5 +5,5 @@ public interface Model {
 
     void loadUsers();
 
-    void loadDeleatedUsers();
+    void loadDeletedUsers();
 }

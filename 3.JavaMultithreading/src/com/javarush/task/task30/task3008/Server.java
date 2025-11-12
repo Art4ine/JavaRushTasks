@@ -111,7 +111,7 @@ public class Server {
             }
 
             writeMessage("Соединение с удаленным адресом "+socket.getRemoteSocketAddress()+" закрыто.");
-
+            
 
         }
     }
